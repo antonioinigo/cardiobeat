@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # Base de datos MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: cardiobeat-mysql
+    restart: always
+    command: --port=3308
+    environment:
+      MYSQL_ROOT_PASSWORD: cardiobeat123
+      MYSQL_DATABASE: cardiobeat_db
+      MYSQL_USER: cardiobeat
+      MYSQL_PASSWORD: cardiobeat123
+    ports:
+      - "3308:3308"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend-laravel/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - cardiobeat-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-P", "3308"]
+      timeout: 20s
+      retries: 10
+
+  # Backend Laravel API
+  backend:
+    build:
+      context: ./backend-laravel
+      dockerfile: Dockerfile
+    container_name: cardiobeat-backend
+    restart: always
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:5000
+      APP_KEY: base64:9kgVESmzV7qCfF0k1m0wBBflE7ChT6dJiRHmiVVu78Y=
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3308
+      DB_DATABASE: cardiobeat_db
+      DB_USERNAME: cardiobeat
+      DB_PASSWORD: cardiobeat123
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+    ports:
+      - "5000:5000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./backend-laravel/audios:/var/www/audios
+      - uploads_data:/var/www/storage/app/public/uploads
+    networks:
+      - cardiobeat-network
+
+  # Frontend React
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cardiobeat-frontend
+    restart: always
+    ports:
+      - "6080:80"
+    depends_on:
+      - backend
+    networks:
+      - cardiobeat-network
+
+  # Nginx Gateway (reverse proxy)
+  nginx:
+    image: nginx:alpine
+    container_name: cardiobeat-nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - cardiobeat-network
+
+volumes:
+  mysql_data:
+  uploads_data:
+
+networks:
+  cardiobeat-network:
+    driver: bridge

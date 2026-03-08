@@ -1,0 +1,318 @@
+/* ==================================== */
+/* PROFILE PAGE PREMIUM STYLES */
+/* ==================================== */
+.profile-container {
+  width: min(900px, 95vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-header-card {
+  position: relative;
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all 0.4s ease;
+}
+
+.cover-photo {
+  height: 220px;
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-teal));
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-photo::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+.profile-info {
+  padding: 24px 32px 32px;
+  display: grid;
+  grid-template-columns: 150px 1fr auto;
+  gap: 28px;
+  align-items: flex-end;
+  margin-top: -85px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-avatar {
+  background: white;
+  padding: 8px;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-red), #ff4d4d);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-details h1 {
+  margin: 0 0 4px;
+  font-size: 32px;
+  color: var(--heading);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.profile-role {
+  font-size: 16px;
+  color: var(--brand-teal-dark);
+  font-weight: 600;
+  margin: 0 0 10px;
+  display: inline-flex;
+  padding: 4px 12px;
+  background: rgba(91, 190, 199, 0.1);
+  border-radius: 20px;
+}
+
+.profile-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-size: 15px;
+  margin: 0 0 16px;
+}
+
+.connections-count {
+  font-size: 15px;
+  color: var(--brand-red);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.connections-count::before {
+  content: "👥";
+  font-size: 16px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.profile-section {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--brand-teal), transparent);
+  opacity: 0.5;
+}
+
+.profile-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  color: var(--heading);
+  margin: 0 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-list, .education-list, .certifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.experience-item, .education-item, .certification-item {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px dashed var(--border);
+  transition: transform 0.2s ease;
+}
+
+.experience-item:hover, .education-item:hover, .certification-item:hover {
+  transform: translateX(4px);
+}
+
+.experience-item:last-child, .education-item:last-child, .certification-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.item-icon {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, rgba(91, 190, 199, 0.1), rgba(227, 30, 36, 0.05));
+  color: var(--brand-teal);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);
+}
+
+.item-content h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: var(--heading);
+  font-weight: 700;
+}
+
+.item-content .company, .item-content .degree, .item-content .org {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.item-content .date {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.item-content .description {
+  font-size: 14.5px;
+  color: var(--text);
+  line-height: 1.6;
+  background: var(--bg);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid var(--border);
+}
+
+.item-content .btn-secondary {
+  margin-top: 16px;
+  padding: 6px 16px;
+  font-size: 13px;
+  color: var(--brand-red);
+  border-color: rgba(227, 30, 36, 0.2);
+}
+
+.item-content .btn-secondary:hover {
+  background: rgba(227, 30, 36, 0.05);
+  border-color: var(--brand-red);
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+    gap: 16px;
+    margin-top: -75px;
+    padding: 16px 20px 24px;
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-location, .profile-actions, .connections-count {
+    justify-content: center;
+  }
+  
+  .experience-item, .education-item, .certification-item {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Form Styles */
+.profile-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 8px;
+}
+
+.profile-section .messages-search-input,
+.profile-section input[type="text"],
+.profile-section input[type="date"],
+.profile-section select,
+.profile-section textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--text);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.profile-section .messages-search-input:focus,
+.profile-section input:focus,
+.profile-section select:focus,
+.profile-section textarea:focus {
+  outline: none;
+  background: white;
+  border-color: var(--brand-teal);
+  box-shadow: 0 0 0 4px rgba(91, 190, 199, 0.15);
+}
+
+.profile-section input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand-teal);
+  cursor: pointer;
+}
+
+.profile-form-grid label {
+  display: flex;
+  flex-direction: column;
+}
+
+
