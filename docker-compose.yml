@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Base de datos MySQL
@@ -65,6 +65,9 @@ services:
       - "6080:80"
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     networks:
       - cardiobeat-network
 

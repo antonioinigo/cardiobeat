@@ -1,0 +1,58 @@
+# ------------------------------
+# Root / OS / Editor artifacts
+# ------------------------------
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ------------------------------
+# Environment and secret files
+# ------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ------------------------------
+# Frontend (Vite + React)
+# ------------------------------
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# ------------------------------
+# Backend (Laravel)
+# ------------------------------
+backend-laravel/vendor/
+backend-laravel/node_modules/
+backend-laravel/.env
+backend-laravel/.phpunit.result.cache
+backend-laravel/public/hot
+backend-laravel/public/storage
+backend-laravel/storage/*.key
+backend-laravel/storage/logs/
+backend-laravel/storage/framework/cache/
+backend-laravel/storage/framework/sessions/
+backend-laravel/storage/framework/testing/
+backend-laravel/storage/framework/views/
+backend-laravel/bootstrap/cache/*.php
+backend-laravel/bootstrap/cache/packages.php
+backend-laravel/bootstrap/cache/services.php
+
+# ------------------------------
+# Test and coverage output
+# ------------------------------
+coverage/
+frontend/coverage/
+backend-laravel/coverage/
+.phpunit.cache/
+

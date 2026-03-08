@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Header({ user, onLogout }) {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [unreadMessages, setUnreadMessages] = useState(unreadMessages);
+  const [unreadMessages, setUnreadMessages] = useState(0);
   const [pendingRequests, setPendingRequests] = useState(0);
 
   useEffect(() => {

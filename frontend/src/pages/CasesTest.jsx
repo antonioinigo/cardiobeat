@@ -72,46 +72,81 @@ export default function CasesTest() {
           </div>
         </div>
 
-        <div className="simulator-test-panel">
-          <p className="smart-quiz-title" style={{ fontWeight: 'bold', fontSize: '1.2rem', marginBottom: '16px' }}>Reto Diagnóstico</p>
-          <ul style={{ marginBottom: '24px' }}>
-            {parseDiagnosisQuestions(item.diagnosis_questions).map((q, i) => <li key={i}>{q}</li>)}
+        <div className="simulator-test-panel" style={{ display: 'flex', flexDirection: 'column' }}>
+          <p className="smart-quiz-title" style={{ fontWeight: 'bold', fontSize: '1.4rem', marginBottom: '20px', color: 'var(--cardiobeat-turquoise)' }}>Reto Diagnóstico</p>
+          <ul style={{ marginBottom: '24px', paddingLeft: '20px', fontSize: '1.1rem', lineHeight: '1.6' }}>
+            {parseDiagnosisQuestions(item.diagnosis_questions).map((q, i) => <li key={i} style={{ marginBottom: '8px' }}>{q}</li>)}
           </ul>
 
-          <textarea
-            className="messages-search-input"
-            value={attemptAnswers[item.id] || ''}
-            onChange={(e) => setAttemptAnswers(prev => ({ ...prev, [item.id]: e.target.value }))}
-            placeholder="Escribe tu diagnóstico..."
-            rows={4}
-            style={{ width: '100%', marginBottom: '16px', borderRadius: '12px', padding: '16px' }}
-          />
-          
-          <button
-            className="btn btn-primary"
-            onClick={() => checkDiagnosisAttempt(item)}
-            disabled={loadingAttemptCaseId === item.id}
-            style={{ width: '100%', padding: '16px', fontSize: '18px', marginBottom: '16px' }}
-          >
-            {loadingAttemptCaseId === item.id ? 'Evaluando...' : 'Comprobar'}
-          </button>
-          
-          <div style={{ textAlign: 'center' }}>
-            <button className="btn btn-outline" onClick={() => setRevealedHints(prev => ({ ...prev, [item.id]: !prev[item.id] }))}>
-              {revealedHints[item.id] ? 'Ocultar respuesta' : 'Ver respuesta'}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
+            <textarea
+              value={attemptAnswers[item.id] || ''}
+              onChange={(e) => setAttemptAnswers(prev => ({ ...prev, [item.id]: e.target.value }))}
+              placeholder="Describa los hallazgos auscultatorios y proponga su diagnóstico diferencial..."
+              rows={7}
+              style={{ 
+                width: '100%', 
+                borderRadius: '8px', 
+                padding: '24px',
+                backgroundColor: '#ffffff',
+                border: '2px solid #e1e8ed',
+                color: '#2c3e50',
+                fontSize: '16px',
+                fontFamily: 'var(--font-primary, "Inter", sans-serif)',
+                lineHeight: '1.7',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                resize: 'none',
+                outline: 'none',
+                transition: 'all 0.2s ease-in-out'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'var(--cardiobeat-turquoise)';
+                e.target.style.boxShadow = '0 4px 15px rgba(91, 190, 199, 0.12)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = '#e1e8ed';
+                e.target.style.boxShadow = '0 2px 10px rgba(0,0,0,0.03)';
+              }}
+            />
+            
+            <button
+              className="btn btn-primary"
+              onClick={() => checkDiagnosisAttempt(item)}
+              disabled={loadingAttemptCaseId === item.id}
+              style={{ 
+                width: '100%', 
+                padding: '18px', 
+                fontSize: '18px', 
+                fontWeight: 'bold',
+                borderRadius: '12px',
+                boxShadow: '0 4px 15px rgba(227, 30, 36, 0.3)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {loadingAttemptCaseId === item.id ? 'Evaluando...' : 'Comprobar Diagnóstico'}
             </button>
+            
+            <div style={{ textAlign: 'center', marginTop: '8px' }}>
+              <button 
+                className="btn btn-outline" 
+                onClick={() => setRevealedHints(prev => ({ ...prev, [item.id]: !prev[item.id] }))}
+                style={{ borderRadius: '10px', padding: '10px 24px' }}
+              >
+                {revealedHints[item.id] ? 'Ocultar respuesta' : 'Ver respuesta correcta'}
+              </button>
+            </div>
           </div>
 
           {attemptFeedback[item.id] && (
-            <div className="simulator-feedback-badge" style={{ marginTop: '16px', padding: '16px', borderRadius: '8px', backgroundColor: 'rgba(230,31,59,0.1)' }}>
+            <div className="simulator-feedback-badge" style={{ marginTop: '24px', padding: '20px', borderRadius: '12px', backgroundColor: 'rgba(230,31,59,0.08)', border: '1px solid rgba(230,31,59,0.2)', color: 'var(--cardiobeat-red)', fontWeight: '500' }}>
               {attemptFeedback[item.id]}
             </div>
           )}
 
           {revealedHints[item.id] && (
-            <div className="simulator-feedback-badge" style={{ marginTop: '16px', padding: '16px', borderRadius: '8px', borderLeft: '4px solid var(--brand-teal)', backgroundColor: 'rgba(53,183,196,0.1)' }}>
-              <strong>✅ Respuesta / Orientación:</strong>
-              <p>{item.diagnosis_hint || 'No disponible'}</p>
+            <div className="simulator-feedback-badge" style={{ marginTop: '24px', padding: '20px', borderRadius: '12px', borderLeft: '6px solid var(--brand-teal)', backgroundColor: 'rgba(53,183,196,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>
+              <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--brand-teal)' }}>✅ Respuesta / Orientación:</strong>
+              <p style={{ margin: 0, lineHeight: '1.5' }}>{item.diagnosis_hint || 'No disponible'}</p>
             </div>
           )}
         </div>

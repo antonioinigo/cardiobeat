@@ -1,0 +1,46 @@
+INSTRUCCIONES PARA AGREGAR AUDIOS DE CORAZÓN
+=============================================
+
+Esta carpeta debe contener los siguientes archivos MP3:
+
+1. normal_heart.mp3 - Sonido de corazón normal
+2. soplo_estenosis_aortica.mp3 - Soplo de estenosis aórtica
+3. soplo_insuficiencia_mitral.mp3 - Soplo de insuficiencia mitral
+4. clic_estenosis_mitral.mp3 - Clic de apertura en estenosis mitral
+5. galope_s3.mp3 - Galope S3 (insuficiencia cardíaca)
+6. roce_pericardico.mp3 - Roce pericárdico
+
+FUENTES PARA DESCARGAR AUDIOS DE CORAZÓN:
+-----------------------------------------
+
+1. EasyAuscultation.com
+   https://www.easyauscultation.com/heart-sounds
+   - Descarga gratuita de sonidos cardíacos
+
+2. ThinkLabs Digital Stethoscope
+   https://www.thinklabs.com/heart-sounds
+   - Biblioteca de sonidos de alta calidad
+
+3. Littmann Learning Institute
+   https://www.littmann.com/3M/en_US/littmann-learning-institute/
+   - Sonidos cardíacos educativos
+
+4. OpenStax
+   https://openstax.org/
+   - Recursos educativos abiertos
+
+5. YouTube Audio Library
+   - Buscar "heart sounds" o "sonidos cardiacos"
+   - Usar herramientas online para descargar como MP3
+
+CÓMO AGREGAR LOS ARCHIVOS:
+--------------------------
+
+1. Descarga los archivos MP3 desde las fuentes mencionadas
+2. Renombra los archivos con los nombres exactos listados arriba
+3. Copia los archivos a esta carpeta: backend-laravel/audios/
+4. Reinicia los contenedores de Docker:
+   cd C:\Users\ainigo\Documents\cadiobeat\cardiobeat-react
+   docker compose restart backend
+
+Los archivos deben estar en formato MP3 para funcionar correctamente.
