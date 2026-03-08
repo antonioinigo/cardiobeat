@@ -79,33 +79,31 @@ export default function CasesTest() {
           </ul>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
-            <textarea
+            <input
+              type="text"
               value={attemptAnswers[item.id] || ''}
               onChange={(e) => setAttemptAnswers(prev => ({ ...prev, [item.id]: e.target.value }))}
-              placeholder="Describa los hallazgos auscultatorios y proponga su diagnóstico diferencial..."
-              rows={7}
+              placeholder="Escriba aquí su diagnóstico..."
               style={{ 
                 width: '100%', 
                 borderRadius: '8px', 
-                padding: '24px',
+                padding: '16px 24px',
                 backgroundColor: '#ffffff',
                 border: '2px solid #e1e8ed',
                 color: '#2c3e50',
                 fontSize: '16px',
                 fontFamily: 'var(--font-primary, "Inter", sans-serif)',
-                lineHeight: '1.7',
-                boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
-                resize: 'none',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
                 outline: 'none',
                 transition: 'all 0.2s ease-in-out'
               }}
               onFocus={(e) => {
                 e.target.style.borderColor = 'var(--cardiobeat-turquoise)';
-                e.target.style.boxShadow = '0 4px 15px rgba(91, 190, 199, 0.12)';
+                e.target.style.boxShadow = '0 4px 12px rgba(91, 190, 199, 0.12)';
               }}
               onBlur={(e) => {
                 e.target.style.borderColor = '#e1e8ed';
-                e.target.style.boxShadow = '0 2px 10px rgba(0,0,0,0.03)';
+                e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.02)';
               }}
             />
             

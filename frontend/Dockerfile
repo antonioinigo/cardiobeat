@@ -1,31 +1,22 @@
-# Etapa 1: Build
-FROM node:18-alpine as build
-
+# Base para dependencias
+FROM node:18-alpine as base
 WORKDIR /app
-
-# Copiar archivos de dependencias
 COPY package*.json ./
-
-# Instalar dependencias
 RUN npm install
-
-# Copiar código fuente
 COPY . .
 
-# Construir la aplicación
+# Etapa de desarrollo (para desarrollo live)
+FROM base as development
+EXPOSE 3000
+CMD ["npm", "run", "dev", "--", "--host"]
+
+# Etapa de construcción para producción
+FROM base as build
 RUN npm run build
 
-# Etapa 2: Producción con Nginx
-FROM nginx:alpine
-
-# Copiar archivos compilados
+# Etapa final de producción con Nginx
+FROM nginx:alpine as production
 COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copiar configuración nginx personalizada
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Exponer puerto 80
 EXPOSE 80
-
-# Comando de inicio
 CMD ["nginx", "-g", "daemon off;"]
